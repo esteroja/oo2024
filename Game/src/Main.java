@@ -6,83 +6,43 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Random random = new Random();
+        //saab enda sisse terve hunniku funktsioone ja muutujaid - klass
+        Random random = new Random(); //klassi loomine
 
-        int kaardiKorgus = 5;
-        int kaardiLaius = 10;
+        Maailm maailm = new Maailm(5, 10);
+        Mangija mangija = new Mangija(random, maailm.kaardiKorgus, maailm.kaardiLaius); //klassi loomine (Mangija klassi tüüp(nagu int, char jne) e objekt). mangija nimi
+        //väärtuse saatmiseks teise klassi tuleb panna need sulgudesse ja tekitada konstruktor klassi failis
+        // väärtused peaksid olema ainult ühes kohas kirjutatud välja
+        Draakon draakon = new Draakon(random, maailm.kaardiKorgus, maailm.kaardiLaius);
+        Ork ork = new Ork(random, maailm.kaardiKorgus, maailm.kaardiLaius);
 
-        int mangijaXCoord = saaKoordinaat(random, kaardiLaius); //ctrl+alt+m -> funktsiooni tegemise shortcut
-        int mangijaYCoord = saaKoordinaat(random, kaardiKorgus);
-        char mangijaSymbol = 'x';
-
-        int draakonXCoord = saaKoordinaat(random, kaardiLaius);
-        int draakonYCoord = saaKoordinaat(random, kaardiKorgus);
-        char draakonSymbol = 'D';
-
-        int orkXCoord = saaKoordinaat(random, kaardiLaius);
-        int orkYCoord = saaKoordinaat(random, kaardiKorgus);
-        char orkSymbol = 'O';
 
         // import java.util.Scanner;
-        Scanner scanner = new Scanner(System.in); // järgmine tund selgitus (objektorienteeritus?)
+        Scanner scanner = new Scanner(System.in); // klass
 
-        prindiKaart(kaardiKorgus, kaardiLaius, mangijaXCoord, mangijaYCoord, mangijaSymbol, draakonXCoord, draakonYCoord, draakonSymbol, orkXCoord, orkYCoord, orkSymbol);
+        maailm.prindiKaart(mangija, draakon, ork); //asjade saatmine on 0 kulu
         String sisend = scanner.nextLine(); //alati string
 
-        switch (sisend) {
-            case "w" -> mangijaYCoord--;
-            case "s" -> mangijaYCoord++;
-            case "a" -> mangijaXCoord--;
-            case "d" -> mangijaXCoord++;
-        }
+        mangija.liigu(sisend, maailm);
 
         // if (boolean || andmebaasiKüsimine()) - EHK lihtne küsimine vasakul pool ja kulukam/keerukam küsimine paremal
         // if (andmebaasiKüsimine() && boolean) - peaks olema vastupidi
 
         while (!sisend.equals("end")) { // .equals --> ==    !väärtus.equals --> !=
-            prindiKaart(kaardiKorgus, kaardiLaius, mangijaXCoord, mangijaYCoord, mangijaSymbol, draakonXCoord, draakonYCoord, draakonSymbol, orkXCoord, orkYCoord, orkSymbol);
-            sisend = scanner.nextLine();
-            switch (sisend) {
-                case "w" -> mangijaYCoord--;
-                case "s" -> mangijaYCoord++;
-                case "a" -> mangijaXCoord--;
-                case "d" -> mangijaXCoord++;
-            }
+            maailm.prindiKaart(mangija, draakon, ork);
+            sisend = scanners.nextLine();
+            mangija.liigu(sisend, maailm);
         }
 
 
     }//main(args[])
 
-    private static void prindiKaart(int kaardiKorgus, int kaardiLaius, int mangijaXCoord, int mangijaYCoord, char mangijaSymbol, int draakonXCoord, int draakonYCoord, char draakonSymbol, int orkXCoord, int orkYCoord, char orkSymbol) {
-        for (int y = 0; y < kaardiKorgus; y++) {
-            for (int x = 0; x < kaardiLaius; x++) { //kokku käib suur tsükkel + väike tsükkel 50 korda
-                char symbol;
-                if (y == 0 || y == kaardiKorgus -1) {
-                    symbol = '-';
-                } else if (x == 0 || x == kaardiLaius -1) {
-                    symbol = '|';
-                } else {
-                    if (x == mangijaXCoord && y == mangijaYCoord) {
-                        symbol = mangijaSymbol;
-                        //System.out.print(mangijaSymbol);
-                    } else if (x == draakonXCoord && y == draakonYCoord) {
-                        symbol = draakonSymbol;
-                    } else if (x == orkXCoord && y == orkYCoord) {
-                        symbol = orkSymbol;
-                    } else {
-                        symbol = ' ';
-                        //System.out.print(' ');
-                    }
-                }
-                System.out.print(symbol);
-            }
-            System.out.println();
-        }
-    } //void tähendab et funktsioon ei returni midagi
+    //ctrl+alt+m -> funktsiooni tegemise shortcut
 
-    private static int saaKoordinaat(Random random, int kaart) { //ctrl+alt+m -> funktsiooni tegemise shortcut
-        return random.nextInt(1, kaart - 1);
-    }
+
+    //private static int saaKoordinaat(Random random, int kaart) { //ctrl+alt+m -> funktsiooni tegemise shortcut
+        //return random.nextInt(1, kaart - 1);
+    //}
 } //main()
 
 //String sona = "suvaline";
