@@ -6,7 +6,7 @@ public class Draakon {
     int yCoord;
     char symbol;
 
-    public Draakon(Random random, int kaardiLaius, int kaardiKorgus) {
+    public Draakon(Random random, int kaardiKorgus, int kaardiLaius) {
         xCoord = saaKoordinaat(random, kaardiLaius); //initsialiseerin
         yCoord = saaKoordinaat(random, kaardiKorgus);
         symbol = 'D';

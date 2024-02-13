@@ -6,7 +6,7 @@ public class Ork {
     int yCoord;
     char symbol;
 
-    public Ork(Random random, int kaardiLaius, int kaardiKorgus) {
+    public Ork(Random random, int kaardiKorgus, int kaardiLaius) {
         xCoord = saaKoordinaat(random, kaardiLaius); //initsialiseerin
         yCoord = saaKoordinaat(random, kaardiKorgus);
         symbol = 'O';

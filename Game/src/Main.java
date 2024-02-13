@@ -30,7 +30,7 @@ public class Main {
 
         while (!sisend.equals("end")) { // .equals --> ==    !väärtus.equals --> !=
             maailm.prindiKaart(mangija, draakon, ork);
-            sisend = scanners.nextLine();
+            sisend = scanner.nextLine();
             mangija.liigu(sisend, maailm);
         }
 

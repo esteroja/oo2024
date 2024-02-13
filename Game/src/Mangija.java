@@ -30,7 +30,7 @@ public class Mangija {
                 if (yCoord > 1) yCoord--;
             }
             case ALLA -> {
-                if (yCoord > maailm.kaardiKorgus - 1) yCoord++;
+                if (yCoord < maailm.kaardiKorgus - 1) yCoord++;
             }
             case VASAKULE -> {
                 if (xCoord > 1) xCoord--;
