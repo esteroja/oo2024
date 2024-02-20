@@ -28,4 +28,4 @@ public class Main {
 //vähemalt 2 funktsiooni
 // väh 2 instantsi temast
 //mainis väh 2 funktsiooni väljakutset
-//
+//vähemalt 2 sout
