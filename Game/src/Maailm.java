@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Maailm {
 
     int kaardiKorgus;
@@ -8,7 +10,7 @@ public class Maailm {
         kaardiLaius = laius;
     }
 
-    public void prindiKaart(Mangija mangija, Draakon draakon, Ork ork) {
+    public void prindiKaart(List<Tegelane> tegelased, List<Ese> esemed) {
         for (int y = 0; y < kaardiKorgus; y++) {
             for (int x = 0; x < kaardiLaius; x++) { //kokku käib suur tsükkel + väike tsükkel 50 korda
                 char symbol;
@@ -17,17 +19,18 @@ public class Maailm {
                 } else if (x == 0 || x == kaardiLaius -1) {
                     symbol = '|';
                 } else {
-                    if (x == mangija.xCoord && y == mangija.yCoord) {
-                        symbol = mangija.symbol;
-                        //System.out.print(mangijaSymbol);
-                    } else if (x == draakon.xCoord && y == draakon.yCoord) {
-                        symbol = draakon.symbol;
-                    } else if (x == ork.xCoord && y == ork.yCoord) {
-                        symbol = ork.symbol;
-                    } else {
-                        symbol = ' ';
-                        //System.out.print(' ');
+                    symbol = ' ';
+                    for (Ese e : esemed) { //käib tsüklit läbi nii kaia kuni listis on objekte, peab tüübi ka ette panema. e on ns objekt arrays
+                        if (e.xCoord == x && e.yCoord == y) {
+                            symbol = e.symbol;
+                        }
                     }
+                    for (Tegelane t : tegelased) {
+                        if (t.xCoord == x && t.yCoord == y) {
+                            symbol = t.symbol;
+                        }
+                    }
+
                 }
                 System.out.print(symbol);
             }
