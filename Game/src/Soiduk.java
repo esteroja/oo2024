@@ -10,9 +10,13 @@ public class Soiduk {
     public Soiduk(int kiirus, String nimetus, Random random, Maailm maailm) {
         this.kiirus = kiirus;
         this.nimetus = nimetus;
-        // this.xCoord = saaKoordinaat()
+        xCoord = saaKoordinaat(random, maailm.kaardiLaius);
+        yCoord = saaKoordinaat(random, maailm.kaardiKorgus);
         this.symbol = 'S';
     }
 
+    private int saaKoordinaat(Random random, int kaart) { //ctrl+alt+m -> funktsiooni tegemise shortcut
+        return random.nextInt(1, kaart - 1);
+    }
     //sisuliselt tuleb teha kõik sama mis esemega
 }

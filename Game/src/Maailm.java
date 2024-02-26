@@ -10,7 +10,7 @@ public class Maailm {
         kaardiLaius = laius;
     }
 
-    public void prindiKaart(List<Tegelane> tegelased, List<Ese> esemed) {
+    public void prindiKaart(List<Tegelane> tegelased, List<Ese> esemed, List<Soiduk> soidukid) {
         for (int y = 0; y < kaardiKorgus; y++) {
             for (int x = 0; x < kaardiLaius; x++) { //kokku käib suur tsükkel + väike tsükkel 50 korda
                 char symbol;
@@ -20,7 +20,7 @@ public class Maailm {
                     symbol = '|';
                 } else {
                     symbol = ' ';
-                    for (Ese e : esemed) { //käib tsüklit läbi nii kaia kuni listis on objekte, peab tüübi ka ette panema. e on ns objekt arrays
+                    for (Ese e : esemed) { //käib tsüklit läbi nii kaua kuni listis on objekte, peab tüübi ka ette panema. e on ns objekt arrays
                         if (e.xCoord == x && e.yCoord == y) {
                             symbol = e.symbol;
                         }
@@ -28,6 +28,11 @@ public class Maailm {
                     for (Tegelane t : tegelased) {
                         if (t.xCoord == x && t.yCoord == y) {
                             symbol = t.symbol;
+                        }
+                    }
+                    for (Soiduk s: soidukid) {
+                        if (s.xCoord == x && s.yCoord == y) {
+                            symbol = s.symbol;
                         }
                     }
 
