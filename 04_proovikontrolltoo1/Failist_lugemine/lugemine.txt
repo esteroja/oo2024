@@ -1,0 +1,6 @@
+Elas metsas mutionu
+keset kuuski noori vanu
+kadakpõõsa juure all
+eluruum tal sügaval
+
+Fail tuleb lisada vajutades parema klahviga projekti nime peale ja new -> file
