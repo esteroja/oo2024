@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/04_proovikontrolltoo1.iml" filepath="$PROJECT_DIR$/.idea/04_proovikontrolltoo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Faili_kirjutamine/Faili_kirjutamine.iml" filepath="$PROJECT_DIR$/Faili_kirjutamine/Faili_kirjutamine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Failist_lugemine/Failist_lugemine.iml" filepath="$PROJECT_DIR$/Failist_lugemine/Failist_lugemine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hulknurk/hulknurk.iml" filepath="$PROJECT_DIR$/hulknurk/hulknurk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keskmine/keskmine.iml" filepath="$PROJECT_DIR$/keskmine/keskmine.iml" />
+    </modules>
+  </component>
+</project>
