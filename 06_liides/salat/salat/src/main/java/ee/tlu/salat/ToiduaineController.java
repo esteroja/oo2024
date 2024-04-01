@@ -10,7 +10,7 @@ import java.util.List;
 public class ToiduaineController {
     List<String> toiduained = new ArrayList<>(); // imiteerime andmebaasi
 
-    // localhost:8080/toiduained ---> saab listi kõikidest toiduainetest []
+    // localhtoiduained ---> saab listi kõikidest toiduainetest []
     @GetMapping("toiduained")
     public List<String> saaToiduined(){
         return toiduained;

@@ -1,5 +1,6 @@
 package ee.tlu.kodutoo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,49 +9,56 @@ import java.util.List;
 @RestController
 @RequestMapping("/teine")
 public class EntityController {
-    List<Entity> andmed = new ArrayList<>();
+    //@Autowired
+            //InfoRepository infoRepository;
+
+    InfoRepository infoRepository;
+    public EntityController(InfoRepository infoRepository){
+        this.infoRepository = infoRepository;
+    }
+
+    //List<InfoEntity> andmed = new ArrayList<>();
 
     @GetMapping("andmed")
-    public List<Entity> saaAndmed(){
-        return andmed;
+    public List<InfoEntity> saaAndmed(){
+        return infoRepository.findAll();
     }
 
     @PostMapping("andmed/{nimi}/{vanus}/{sugu}")
-    public List<Entity> lisaInfo(@PathVariable String nimi,
-                                 @PathVariable int vanus,
-                                 @PathVariable String sugu){
+    public List<InfoEntity> lisaInfo(@PathVariable String nimi,
+                                     @PathVariable int vanus,
+                                     @PathVariable String sugu){
         if (!sugu.equals("mees") && !sugu.equals("naine")){
-            return andmed;
+            return infoRepository.findAll();
         }
-        Entity info = new Entity(nimi, vanus, sugu);
-        andmed.add(info);
-        return andmed;
+        InfoEntity info = new InfoEntity(nimi, vanus, sugu);
+        infoRepository.save(info);
+        return infoRepository.findAll();
     }
 
-    @DeleteMapping("andmed/kustuta/{index}")
-    public List<Entity> kustutaInfo(@PathVariable int index){
-        andmed.remove(index);
-        return andmed;
+    @DeleteMapping("andmed/kustuta/{nimi}")
+    public List<InfoEntity> kustutaInfo(@PathVariable String nimi){
+        infoRepository.deleteById(nimi);
+        return infoRepository.findAll();
     }
 
-    // localhost:8080/teine/andmed/muuda?index=0&nimi=Mari&vanus=16&sugu=naine
+    // localhost:8080/teine/andmed/muuda?nimi=Mari&vanus=16&sugu=naine
     @PutMapping("andmed/muuda")
-    public List<Entity> muudaInfot(@RequestParam int index,
-                                   @RequestParam String nimi,
-                                   @RequestParam int vanus,
-                                   @RequestParam String sugu){
+    public List<InfoEntity> muudaInfot(@RequestParam String nimi,
+                                       @RequestParam int vanus,
+                                       @RequestParam String sugu){
         if (!sugu.equals("mees") && !sugu.equals("naine")){
-            return andmed;
+            return infoRepository.findAll();
         }
-        Entity info = new Entity(nimi, vanus, sugu);
-        andmed.set(index, info);
-        return andmed;
+        InfoEntity info = new InfoEntity(nimi, vanus, sugu);
+        infoRepository.save(info);
+        return infoRepository.findAll();
     }
 
     @GetMapping("andmed/vanustesumma")
     public int vanusteSumma(){
         int summa = 0;
-        for (Entity i: andmed){
+        for (InfoEntity i: infoRepository.findAll()){
             summa += i.vanus;
         }
         return summa;
