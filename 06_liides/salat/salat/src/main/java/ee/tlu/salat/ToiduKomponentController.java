@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController // alati vaja controlleril
+
 public class ToiduKomponentController {
 
     List<ToiduKomponent> toidukomponendid = new ArrayList<>();

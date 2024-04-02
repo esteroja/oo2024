@@ -6,15 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api")
+@RestController // kontroller EHK front-end saab siit ligi
+@RequestMapping("/api") // saan igale Api otspunktile eesliidese panna
+@CrossOrigin(origins = "http://localhost:3000") //see ütleb, mis rakendus mulle ligi päase
 
 public class ToiduaineEntityController {
     // ["kartul", "vorst"];
     // [{nimi: "Lartul, valk:0}]
 
     // 2) variant - tavaline kosntruktor
-    ToiduaineRepository toiduaineRepository;
+    ToiduaineRepository toiduaineRepository; // ühendan Repository, et saaks ligi andmebaasi päringutele
+    // imitatsioon: ToiduaineRepository toiduaineRepository = new ToiduaineRepository();
+
+    //Dependency Injection -- tõmbame mingi teise klassi(interface) + ei toimi kogu aeg new tegemist
+
     public ToiduaineEntityController(ToiduaineRepository toiduaineRepository){
         this.toiduaineRepository = toiduaineRepository;
     }
