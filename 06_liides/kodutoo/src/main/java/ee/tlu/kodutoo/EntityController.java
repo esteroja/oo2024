@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/teine")
 public class EntityController {
     //@Autowired
@@ -24,19 +25,17 @@ public class EntityController {
         return infoRepository.findAll();
     }
 
-    @PostMapping("andmed/{nimi}/{vanus}/{sugu}")
-    public List<InfoEntity> lisaInfo(@PathVariable String nimi,
-                                     @PathVariable int vanus,
-                                     @PathVariable String sugu){
-        if (!sugu.equals("mees") && !sugu.equals("naine")){
+    @PostMapping("andmed")
+    public List<InfoEntity> lisaInfo(@RequestBody InfoEntity infoEntity){
+        if (!infoEntity.sugu.equals("mees") && !infoEntity.sugu.equals("naine")){
             return infoRepository.findAll();
         }
-        InfoEntity info = new InfoEntity(nimi, vanus, sugu);
-        infoRepository.save(info);
+        //InfoEntity info = new InfoEntity(nimi, vanus, sugu);
+        infoRepository.save(infoEntity);
         return infoRepository.findAll();
     }
 
-    @DeleteMapping("andmed/kustuta/{nimi}")
+    @DeleteMapping("andmed/{nimi}")
     public List<InfoEntity> kustutaInfo(@PathVariable String nimi){
         infoRepository.deleteById(nimi);
         return infoRepository.findAll();

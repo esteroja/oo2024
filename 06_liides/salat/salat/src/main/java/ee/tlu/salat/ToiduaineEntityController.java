@@ -56,7 +56,7 @@ public class ToiduaineEntityController {
         return toiduaineRepository.findAll();
     }
 
-    //muutmine (putmapping asemel)
+    //muutmine (putmapping asemel) tuleb teha et frontend aru saaks
     @PostMapping("toiduained")
     public List<ToiduaineEntity> lisaToiduaine(@RequestBody ToiduaineEntity toiduaineEntity){
         if (toiduaineEntity.valk + toiduaineEntity.rasv + toiduaineEntity.sysivesik > 100){
@@ -97,6 +97,31 @@ public class ToiduaineEntityController {
     @GetMapping("toiduainete-koguarv")
     public int toiduaineteKoguarv(){
         return toiduaineRepository.findAll().size();
+    }
+
+/*    @GetMapping("toiduained")
+    public List<ToiduaineEntity> toiduainedMinValk(@PathVariable int minValk){
+        List<ToiduaineEntity> toiduained = toiduaineRepository.findAll();
+        List<ToiduaineEntity> tingimuseleVastavadToiduained = new ArrayList<>();
+        for (ToiduaineEntity t: toiduained){
+            if (t.valk >= minValk){
+                tingimuseleVastavadToiduained.add(t);
+            }
+        }
+        return toiduaineRepository.findAll();
+    }*/ // SELECT * FROM Toiduained WHERE valk >=5;
+
+
+    //findAll on funktsionaalsus, mis küsib kõik andmed andmebaasist
+
+    @GetMapping("toiduained-valk-min/{minValk}")
+    public List<ToiduaineEntity> toiduainedMinValk(@PathVariable int minValk){
+        return toiduaineRepository.findAllByValkGreaterThan(minValk);
+    }
+
+    @GetMapping("toiduained-sysivesik-min/{min}/{max}")
+    public List<ToiduaineEntity> toiduainedSysivesik(@PathVariable int min, @PathVariable int max){
+        return toiduaineRepository.findAllBySysivesikBetween(min, max);
     }
 
 }

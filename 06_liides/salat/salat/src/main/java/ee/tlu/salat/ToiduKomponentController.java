@@ -1,29 +1,43 @@
 package ee.tlu.salat;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@RestController // alati vaja controlleril
-
+@RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 public class ToiduKomponentController {
 
-    List<ToiduKomponent> toidukomponendid = new ArrayList<>();
+    @Autowired
+    ToiduKomponentRepository toiduKomponentRepository;
 
-    @PostMapping("toidukomponent")
-    public List<ToiduKomponent> lisaToidukomponent(@RequestBody ToiduKomponent komponent){
-        toidukomponendid.add(komponent);
-        return toidukomponendid;
+    // Bean --> automaatselt loodav klass kui rakendus käivitub (new Class();)
+    // @Autowired --> samaväärne konstruktoriga, tõmbab Repository siia sisse (et saaks teha put, delete jne andmebaasis)
+
+    // Selleks et saaks andmebaasist päringuid teha (controller tahab päringuid teha)
+    // INSERT INTO ToiduKomponent VALUES("")     ---->    repository.save("");
+    // DELETE FROM ToiduKomponent WHERE id = 5    ---->    repository.deleteById(5)
+    // SELECT * FROM ToiduKomponent    ---->    repository.findAll()
+
+    // http://localhost:8080/toidukomponendid
+    @GetMapping("toidukomponendid")
+    public List<ToiduKomponent> getToiduKomponents(){
+        return toiduKomponentRepository.findAll();
     }
 
-    @PutMapping("toidukomponent/{index}")
-    public List<ToiduKomponent> muudaToidukomponent(@PathVariable int index, @RequestBody ToiduKomponent komponent){
-        toidukomponendid.set(index, komponent);
-        return toidukomponendid;
+    // PathVariable: http://localhost:8080/toidukomponendid/4 --> kui üks muutuja
+    // RequestParam: http://localhost:8080/toidukomponendid?id=4
+    @DeleteMapping("toidukomponendid/{id}")
+    public List<ToiduKomponent> deleteToiduKomponent(@PathVariable Long id){
+        toiduKomponentRepository.deleteById(id);
+        return toiduKomponentRepository.findAll();
+    }
+
+    @PostMapping("toidukomponendid")
+    public List<ToiduKomponent> addToiduKomponent(@RequestBody ToiduKomponent toiduKomponent){
+        toiduKomponentRepository.save(toiduKomponent);
+        return toiduKomponentRepository.findAll();
     }
 }
-
-// kui üks kindel asi mida muudad siis put ja path
-// kui mitu siis requestparam
-// kui set siis requestbody (????)
