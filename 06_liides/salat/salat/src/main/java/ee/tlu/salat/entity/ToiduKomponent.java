@@ -1,8 +1,9 @@
-package ee.tlu.salat;
+package ee.tlu.salat.entity;
 
 // Koosneb toiduainest ja temaga seotud kogusest toidu sees
 // Klassikomplekt -> kartul + omadused ja mitu grammi teda on
 
+import ee.tlu.salat.entity.ToiduaineEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,8 @@ public class ToiduKomponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToOne //annotatsioon, et see on andmebaas
+    @ManyToOne(cascade = CascadeType.ALL)//annotatsioon, et see on andmebaas ;
+    // kui kustutatakse toiduaine, siis kustutatakse temaga seotud toidukomponendid (cascade)
     ToiduaineEntity toiduaine; // kui see oleks list, siis tuleks panna @ManyToMany
 
     //£ManyToMany

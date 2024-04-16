@@ -28,7 +28,7 @@ function App() {
       .then(json => {
         setLisainfo(json);
       })
-  })
+  }, [])
 
   function lisa(){
     if(nimiRef.current.value.trim() === ""){

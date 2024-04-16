@@ -1,5 +1,6 @@
-package ee.tlu.salat;
+package ee.tlu.salat.controller;
 
+import ee.tlu.salat.entity.ToiduKomponent;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

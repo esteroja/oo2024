@@ -1,4 +1,4 @@
-package ee.tlu.salat;
+package ee.tlu.salat.entity;
 
 // jpa moodulist pärinev. Hibernate - teeb java veebiraamistiku ja andmebaasi vahel suhtlust
 // Chatgpt võib pakkuda import.javax.persistance.Table
@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 
 public class ToiduaineEntity {
     @Id //primaatvõti. alati unikaalne - kustutamiseks, võtmiseks, muutmiseks
-    String nimetus;
-    int valk;
-    int rasv;
-    int sysivesik;
+    private String nimetus;
+    private int valk;
+    private int rasv;
+    private int sysivesik;
 
 //    public ToiduaineEntity(String nimetus, int valk, int rasv, int sysivesik) {
 //        this.nimetus = nimetus;
