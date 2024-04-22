@@ -1,9 +1,10 @@
-package ee.tlu.kodutoo;
+package ee.tlu.kodutoo.controller;
 
+import ee.tlu.kodutoo.entity.InfoEntity;
+import ee.tlu.kodutoo.repository.InfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class EntityController {
 
     @PostMapping("andmed")
     public List<InfoEntity> lisaInfo(@RequestBody InfoEntity infoEntity){
-        if (!infoEntity.sugu.equals("mees") && !infoEntity.sugu.equals("naine")){
+        if (!infoEntity.getSugu().equals("mees") && !infoEntity.getSugu().equals("naine")){
             return infoRepository.findAll();
         }
         //InfoEntity info = new InfoEntity(nimi, vanus, sugu);
@@ -58,7 +59,7 @@ public class EntityController {
     public int vanusteSumma(){
         int summa = 0;
         for (InfoEntity i: infoRepository.findAll()){
-            summa += i.vanus;
+            summa += i.getVanus();
         }
         return summa;
     }
