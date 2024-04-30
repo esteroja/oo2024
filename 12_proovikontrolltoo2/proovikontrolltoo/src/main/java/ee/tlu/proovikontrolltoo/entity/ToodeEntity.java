@@ -1,5 +1,6 @@
-package ee.tlu.proovikontrolltoo;
+package ee.tlu.proovikontrolltoo.entity;
 
+import ee.tlu.proovikontrolltoo.entity.Kategooria;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,9 @@ public class ToodeEntity {
 
     @ManyToOne
     private Kategooria kategooria;
+
+    // {"nimi": "asas",
+    // "hind" : 1234,
+    // "aktiivne": true,
+    // "kategooria": {"id": 2}
 }

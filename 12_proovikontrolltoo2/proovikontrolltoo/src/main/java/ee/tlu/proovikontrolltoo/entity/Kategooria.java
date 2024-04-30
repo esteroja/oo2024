@@ -1,4 +1,4 @@
-package ee.tlu.proovikontrolltoo;
+package ee.tlu.proovikontrolltoo.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,3 +23,12 @@ public class Kategooria {
 //    private Kategooria kategooria;
 //    //toode tabelis on kategooria tulp ka, kus igale tootele on lisatud kategooria id
 }
+
+// vanemate all on lapsed
+// tellimuste sees on tooted
+
+// Kategooriate all on tooted
+// 1. Kategooriat lisades lisada kõik toooted koos temaga (MANYTOMANY
+//2. Kategooriat lisades on tühi array. Eraldi API otspunkt millega saab toodet sisestada (MANYTOMANY)
+
+//3. toofdet lisades lisame ka kategooria(MANY TO ONE)

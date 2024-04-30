@@ -1,5 +1,6 @@
-package ee.tlu.proovikontrolltoo;
+package ee.tlu.proovikontrolltoo.repository;
 
+import ee.tlu.proovikontrolltoo.entity.ToodeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,6 +16,10 @@ public interface ToodeRepository extends JpaRepository<ToodeEntity, Long> {
     List<ToodeEntity> findByNimiContains(String nimi); //controller tegemata
 
     List<ToodeEntity> findByNimiStartsWith(String nimi); //controller tegemata
+
+    List<ToodeEntity> findByKategooria_Id(Long id);
+
+
 
 
 }

@@ -1,5 +1,7 @@
-package ee.tlu.proovikontrolltoo;
+package ee.tlu.proovikontrolltoo.controller;
 
+import ee.tlu.proovikontrolltoo.entity.ToodeEntity;
+import ee.tlu.proovikontrolltoo.repository.ToodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

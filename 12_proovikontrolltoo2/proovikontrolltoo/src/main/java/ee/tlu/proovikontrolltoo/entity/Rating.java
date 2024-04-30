@@ -1,4 +1,4 @@
-package ee.tlu.proovikontrolltoo;
+package ee.tlu.proovikontrolltoo.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
