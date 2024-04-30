@@ -1,6 +1,8 @@
 package ee.tlu.salat.controller;
 
+import ee.tlu.salat.entity.ToiduKomponent;
 import ee.tlu.salat.entity.Toit;
+import ee.tlu.salat.repository.ToiduKomponentRepository;
 import ee.tlu.salat.repository.ToitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ public class ToitController {
 
     @Autowired
     ToitRepository toitRepository;
+    @Autowired
+    private ToiduKomponentRepository toiduKomponentRepository;
 
     // localhost:8080/toit
     @GetMapping("toit")
@@ -48,4 +52,24 @@ public class ToitController {
     })
   }*/
     // Lisamine -> toidukomponendiga sarnane
+
+    /*@GetMapping("toidu-valgu-kogus/{id}")
+    public double getToiduValguKogus(@PathVariable Long id){
+        double sum = 0;
+        List<ToiduKomponent> toidukomponendid = toiduKomponentRepository.findByToit_Id(id); //pm laed komponendi repositoryst koik alla ja liidad need kokku
+        for (ToiduKomponent t: toidukomponendid){
+            sum += t.getKogus() * t.getToiduaine().getValk();
+        }
+        return sum / 1000;
+    }*/
+
+    @GetMapping("toidu-valgu-kogus/{id}")
+    public double getToiduValguKogus(@PathVariable Long id){
+        double sum = 0;
+        List<ToiduKomponent> toidukomponendid = toitRepository.findById(id).get().getToidukomponendid(); //pm laed komponendi repositoryst koik alla ja liidad need kokku
+        for (ToiduKomponent t: toidukomponendid){
+            sum += t.getKogus() * t.getToiduaine().getValk();
+        }
+        return sum / 1000;
+    }
 }

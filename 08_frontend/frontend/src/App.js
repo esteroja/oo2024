@@ -41,6 +41,10 @@ function App() {
     fetch("http://localhost:8080/api/toiduained/" + primaarvoti, {"method": "DELETE"}) // deletemapping
       .then(response => response.json()) 
       .then(json => {
+        if (json.error){
+          alert("TOiduaine on toidukomponendis kasutusel"); // toastify
+          return;
+        }
         setKogus(json.length); 
         setToiduained(json);
       })
@@ -96,6 +100,7 @@ function App() {
       .then(response => response.json()) 
       .then(json => {
         setToidukomponendid(json);
+        //window.location.reload();
     })
   }
 

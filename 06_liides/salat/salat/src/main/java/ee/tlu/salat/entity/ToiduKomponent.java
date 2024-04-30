@@ -23,6 +23,9 @@ public class ToiduKomponent {
     // kui kustutatakse toiduaine, siis kustutatakse temaga seotud toidukomponendid (cascade)
     ToiduaineEntity toiduaine; // kui see oleks list, siis tuleks panna @ManyToMany
 
+    //@ManyToOne
+    //Toit toit;
+
     //£ManyToMany
     //List<ToiduaineEntity> toiduained;
     int kogus;
