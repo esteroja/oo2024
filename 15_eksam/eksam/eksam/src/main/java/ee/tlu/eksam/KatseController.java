@@ -33,4 +33,16 @@ public class KatseController {
         katseRepository.deleteById(id);
         return katseRepository.findAll();
     }
+
+
+    @GetMapping("tulemused/{spordiala}/{katseid}")
+    public float vordlus(@PathVariable String spordiala, @PathVariable Long katseid){
+        if (spordiala.equals("kuulitouge")){
+            spordiala = "kuulitõuge";
+        }
+        float suurim = katseRepository.findFirstBySpordialaOrderByTulemusDesc(spordiala).getTulemus();
+        float kysitav = katseRepository.findByKatseid(katseid).getTulemus();
+        float vordlus = (kysitav * 100) / suurim;
+        return vordlus;
+    }
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Katse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long katse_id;
+    private Long katseid;
     private float tulemus;
     private String spordiala;
     private int etapp;
